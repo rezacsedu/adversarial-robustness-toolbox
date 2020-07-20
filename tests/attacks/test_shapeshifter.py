@@ -15,27 +15,16 @@
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-from __future__ import absolute_import, division, print_function, unicode_literals
-
 import logging
 import unittest
-import importlib
 
 import tensorflow as tf
 import numpy as np
 
 from tests.utils import TestBase, master_seed
 
-object_detection_spec = importlib.util.find_spec("object_detection")
-object_detection_found = object_detection_spec is not None
-
 logger = logging.getLogger(__name__)
 
-
-@unittest.skipIf(
-    not object_detection_found,
-    reason="Skip unittests if object detection module is not found because of pre-trained model."
-)
 @unittest.skipIf(
     tf.__version__[0] == "2" or (tf.__version__[0] == "1" and tf.__version__.split(".")[1] != "15"),
     reason="Skip unittests if not TensorFlow v1.15 because of pre-trained model.",

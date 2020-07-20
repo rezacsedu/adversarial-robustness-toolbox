@@ -7,6 +7,7 @@ jobs:
     - python: 3.6
       env: TENSORFLOW_V=1.15.3 KERAS_V=2.2.5
       script:
+        - pip install object-detection==0.0.3
         - ./run_tests.sh
 
     - python: 3.7
